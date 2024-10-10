@@ -19,6 +19,8 @@ body {
 
 
 :root {
+    scroll-behavior: smooth;
+    
     --contentWidth:1200px;
     
     /* fonts */

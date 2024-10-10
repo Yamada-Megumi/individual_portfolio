@@ -232,6 +232,85 @@ main{
         .charactor span{
             color: var(--color-saddlebrown);
         }
+
+        form{
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 32px;
+            
+
+            label{
+                display: block;
+            }
+            p button, 
+            p label{display: block;}
+            p label{
+                width: 6rem;
+            }
+            p{
+                text-align: left;
+                font-size: var(--font-size-lg);
+                margin-bottom: var(--spacing-s);
+                margin-bottom: 32px;
+                display: flex;
+                align-items:flex-start;
+                justify-content: flex-start;
+                gap:.5rem;
+            }
+
+            input,textarea{
+                background-color: white;
+                border: 1px solid #ccc;
+                padding: .25em .5em;
+                border-radius: var(--br-5xs);
+                width: 90%;
+            }
+            textarea{
+                height: 6rem;
+            }
+            input:focus,textarea:focus {
+                outline: none;      
+            }
+
+            p.agree{
+                display: block;
+
+                align-items:unset;
+                justify-content: unset;
+                gap:unset;
+            } 
+
+            p.agree em{
+                font-style: normal;
+                font-weight: 600;
+                padding-top: 1em;
+            }
+            input[type="checkbox"]{
+                background-color: white;
+                border: 1px solid #ccc;
+                padding: .25em .5em;
+                border-radius: var(--br-5xs);
+                width: 2em;
+            }
+            p.agree label{
+                display: block;
+                padding-top: 1em;
+                width: 100%;
+
+            }
+            p:last-of-type button{
+                /* background-color: red; */
+                margin: auto;
+            }
+            
+
+
+
+
+
+        }
+
     }
     section#profile{
 
@@ -250,6 +329,28 @@ main{
         ul{
             list-style: disc outside;
             margin-left: 2em;
+        }
+    }
+
+    section#contact{
+        flex-direction: column;
+        align-items: center;
+
+        h2,p, div p{
+            text-align: center;
+        }
+        div p img{
+            display: inline-block;
+        }
+
+
+        div{
+        width: 80%;
+        padding:var(--padding-13xl);
+        margin: auto;
+        border: 1px solid var(--border-default-default);
+        border-radius: var(--br-5xs);
+        
         }
     }
 
@@ -297,6 +398,8 @@ footer .basew{
 }
 
 
+/* レスポンシブCSS */
+
     /* 画面サイズ 930px 未満 */
     @media (width < 930px) {
 
@@ -321,32 +424,26 @@ footer .basew{
                 height: min(50vh,500px);
             }
         }
-        main{
 
+        main{
             section{
 
-                .secImg{
-                    /* flex-shrink: unset; */
-                }
                 .secImg img{
                     width: min(280px, 350px);
                 }
 
             }
-
-
         }
-      }
+    }
 
     /* 画面サイズ 630px 未満 */
     @media (width < 630px) {
         header{
-
             nav{
                 display: none;
             }
-
         }
+
         footer{
             position: fixed;
             bottom: 0;
@@ -402,10 +499,38 @@ footer .basew{
                     height: auto;
                 }
             }
+
+            section#contact{
+                p{
+                    text-align: left !important;
+                }
+
+                div{
+                width: 99%;
+                padding: .25em;
+                }
+                form{
+                    width: 95%;
+                    
+                    p label{
+                        width: unset;
+                    }
+                    p{
+                        flex-direction: column;
+                        gap:.5rem;
+                    }
+        
+                    input,textarea{
+                        width: 100%;
+                    }
+
+                    input[type="checkbox"]{
+                        width: 2em;
+                    }
+                    
+                }
+        
+            }
  
         }
     }
-
-        
-        
-
