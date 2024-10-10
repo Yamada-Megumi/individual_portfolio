@@ -1,0 +1,99 @@
+@import url(./reset.css);
+
+*{
+    font-family:"Helvetica Neue",
+    Arial,
+    "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans",
+    Meiryo,
+    sans-serif;
+    color:var( --border-neutral-secondary)
+
+}
+
+body {
+    margin: 0;
+    line-height: normal;
+    box-sizing: border-box;
+}
+
+
+:root {
+    --contentWidth:1200px;
+    
+    /* fonts */
+    --font-albert-sans: 'Albert Sans';
+
+    --font-ubuntu-sans: 'Ubuntu Sans';
+    
+    /* font sizes */
+    --small-text-size: 1rem;
+    --font-size-xl: 1.25rem;
+    --font-size-lg: 1.125rem;
+    --font-size-5xl: 1.5rem;
+    --font-size-sm: 0.875rem;
+    --font-size-21xl: 2.5rem;
+    --font-size-29xl: 3rem;
+    --font-size-13xl: 2rem;
+    
+    /* Colors */
+    --background-default-default: #fff;
+    --background-warning-secondary: #fff1c2;
+    --background-warning-hover: #e5a000;
+    --background-positive-default: #14ae5c;
+    --background-neutral-tertiary: #e3e3e3;
+
+    --border-neutral-secondary: #767676;
+    --border-default-default: #d9d9d9;
+
+    --color-black: #000;
+    --color-saddlebrown: #975102;
+
+    --text-neutral-on-neutral: #f3f3f3;
+    --text-neutral-default: #303030;
+    --text-neutral-secondary: #5a5a5a;
+
+    --text-warning-tertiary: #bf6a02;
+
+    --text-default-default: #1e1e1e;
+    --text-brand-on-brand: #f5f5f5;
+    --text-brand-default: #2c2c2c;
+
+    --icon-default-tertiary: #b3b3b3;
+
+    
+    /* Spacing */
+    --spacing-s: 1.5rem;
+    --spacing-m: 3rem;
+ 
+    --space-200: 0.5rem;
+    --space-300: 0.75rem;
+    --space-400: 1rem;
+
+    --radius-200: 0.5rem;
+
+    /* Paddings */
+    --padding-xs: 0.75rem;
+    --padding-base: 1rem;
+    --padding-5xl: 1.5rem;
+    --padding-13xl: 2rem;
+    --margin-bottom:150px;
+
+
+    /* Gaps */
+    --gap-13xl: 2rem;
+    --gap-5xl: 1.5rem;
+    --gap-5xs: 0.5rem;
+    --gap-49xl: 4.25rem;
+    --gap-base: 1rem;
+    
+
+    
+    /* Border radiuses */
+    --br-5xs: 8px;
+    
+    /* Effects */
+    --inner-shadow-100: 0px 1px 4px rgba(12, 12, 13, 0.05) inset;
+    --button-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    --drop-shadow-100: 0px 1px 4px rgba(12, 12, 13, 0.05);
+}
