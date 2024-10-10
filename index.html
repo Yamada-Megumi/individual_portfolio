@@ -25,7 +25,7 @@
 	<header>
 		<div id="navigation">
 			<div id="logo">
-				<a href="#">Works of <span>や</span>まだめぐみ</a>
+				<a href="index.html">Works of やまだ<span>め</span>ぐみ</a>
 			</div>
 			<nav>
 				<ul>
@@ -38,9 +38,11 @@
 			</nav>
 		</div>
 		<div id="heroMessage">
-			<h1>I can do that.</h1>
-			<p>コーディングが好きです</p>
-			<button><a href="#about">About me</a></button>
+			<div>
+				<h1>I can do that.</h1>
+				<p>コーディングが好きです</p>
+				<button><a href="#about">About me</a></button>
+			</div>
 		</div>
 	</header>
 
@@ -49,22 +51,81 @@
 			<div>
 				<h2>Service</h2>
 				<p>Webサイト制作・支援 / 設計からサイト完成まで対応 / CMSのカスタマイズ支援 / 適切なCMSの選択と制作サポート / バナー制作など画像データ制作 / 画像加工、修正など対応</p>
-				<button>Worksへ</button>
+				<button><a href="#works">Worksへ</a></button>
 			</div>
 
-			<div><img src="./images/service.png" alt="look on the bright side" class="secImg"></div>
+			<div class="secImg"><img src="./images/service.png" alt="look on the bright side" class="secImg"></div>
 
 		</section>
 
-		<section id="works">
+		<section id="works" class="basedcol">
+			<div>
+				<h2>Works</h2>
+				<p>サイト制作事例<br>
+					HTML/CSSサイト / Wordpress、 baserCMS、Moodle などの CMS設置・運用サポート / PHP＋関連データベース / JavaScrip / ホスティングサーバーの設定
+				</p>
+				<button><a href="./works.html">作成事例を見る</a></button>
+			</div>
 
+			<div class="secImg"><img src="./images/works.png" alt="look on the bright side" class="secImg"></div>
 		</section>
 
-		<section id="about">
+		<section id="about" class="basedcol">
+			<div>
+				<h2>About me</h2>
+				<p class="charactor">やまだ <sspan>め</sspan>ぐみ</p>
+				<p>コーディングが得意<br>
+					プレーンなHTML/CSSでレスポンシブ対応。CSSライブラリ対応はご相談ください。</p>
 
+				<p>現在 新潟県に在住<br>
+					略歴：アニメーター（動画）から家庭用ゲーム開発会社などでグラフィックデザイナー。新潟に引っ越し後、IT講師をしつつWeb制作業務開始。
+				</p>
+				<button><a href="#profile">Profileへ</a></button>
+			</div>
+
+			<div class="secImg"><img src="./images/pandawho.png" alt="look on the bright side" class="secImg"></div>
 		</section>
 
-		<section id="profile">
+		<section id="profile" class="basedcol">
+			<div>
+				<h2>Profile</h2>
+				<div>
+					<h3>所在地</h3>
+					<p>新潟県新潟市</p>
+				</div>
+
+				<div>
+					<h3>事業内容</h3>
+					<ul>
+						<li>サイトデザイン</li>
+						<li>新規Webサイト制作</li>
+						<li>既存サイト修正、更新、プログラム設置</li>
+						<li>画像加工やバナー作成など</li>
+					</ul>
+				</div>
+
+				<div>
+					<h3>経験言語</h3>
+					<p>HTML（旧HTML-XHTM- Living standard）/ CSS / JavaScript / jQuery / PHP / MySQL / MariaDB / SQLite /
+						Git /
+					</p>
+				</div>
+
+				<div>
+					<h3>開発環境</h3>
+					<ul>
+						<li>iMac 27 macOS Sequoia</li>
+						<li>ミニPC Windows pro 11</li>
+						<li>動作検証用　iPad pro 10、Android</li>
+						<li>Visual Studio Code / Figma / Affinity Photo2 / Affinity Designer2 / ( PhotoShop ＆
+							illustrator )
+							/ MAMP or XAMPP /</li>
+						<li>ZOOM or Google meet</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="secImg"><img src="./images/profile.png" alt="look on the bright side" class="secImg"></div>
 
 		</section>
 

@@ -27,11 +27,11 @@ body {
     --font-ubuntu-sans: 'Ubuntu Sans';
     
     /* font sizes */
-    --small-text-size: 1rem;
-    --font-size-xl: 1.25rem;
-    --font-size-lg: 1.125rem;
-    --font-size-5xl: 1.5rem;
     --font-size-sm: 0.875rem;
+    --small-text-size: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-5xl: 1.5rem;
     --font-size-21xl: 2.5rem;
     --font-size-29xl: 3rem;
     --font-size-13xl: 2rem;
@@ -94,6 +94,6 @@ body {
     
     /* Effects */
     --inner-shadow-100: 0px 1px 4px rgba(12, 12, 13, 0.05) inset;
-    --button-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
-    --drop-shadow-100: 0px 1px 4px rgba(12, 12, 13, 0.05);
+    --button-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+    --drop-shadow-100: 0px 1px 4px rgba(12, 12, 13, 0.25);
 }
