@@ -18,6 +18,9 @@ body{
     font-size: var(--font-size-lg);
     background-color: var(--background-default-default);
 }
+h3{
+    color:var(--text-neutral-secondary);
+}
 
 
 header{
@@ -26,14 +29,8 @@ header{
     font-size: var(--small-text-size);
     /* background-color: var(--background-warning-secondary); */
     padding-top:var(--space-400);
-
-    height: 700px;
-
-    background-image: url(../images/person.png);
-    background-repeat: no-repeat;
-    background-position: right 11vh;
     background-attachment: fixed;
-    background-size:contain;
+
     background-color:rgba(250, 224, 119, 0.5);
     background-blend-mode:lighten;
 
@@ -144,8 +141,7 @@ header{
 
     #heroMessage{
         display: grid;
-        place-items: center;
-        height: 600px;
+        place-items: center;        
         max-width: var(--contentWidth);
         margin-left: auto;
         margin-right: auto;
@@ -162,7 +158,18 @@ header{
     }
 
 }
+#home header{
+    height: 700px;
 
+    background-image: url(../images/person.png);
+    background-repeat: no-repeat;
+    background-position: right 11vh;
+    background-size:contain;
+
+    #heroMessage{
+        height: 600px;
+    }
+}
 
 
 
@@ -303,14 +310,7 @@ main{
                 /* background-color: red; */
                 margin: auto;
             }
-            
-
-
-
-
-
         }
-
     }
     section#profile{
 
@@ -326,10 +326,11 @@ main{
             font-weight: 800;
         }
         p{margin-left: 1em;}
-        ul{
-            list-style: disc outside;
-            margin-left: 2em;
-        }
+
+    }
+    ul{
+        list-style: disc outside;
+        margin-left: 2em;
     }
 
     section#contact{
@@ -352,9 +353,7 @@ main{
         border-radius: var(--br-5xs);
         
         }
-    }
-
-    
+    }    
 }
 
 
@@ -397,6 +396,122 @@ footer .basew{
 
 }
 
+/* 制作事例ページ　works */
+#works{
+    header{
+        background-image: url(../images/outpeople.svg);
+        background-repeat: no-repeat;
+        background-position: right -50px top 100px;
+        height:350px;
+
+        #heroMessage{
+            height: 290px;
+
+            div{display:block;}
+            h1,p{
+                display: inline;
+            }
+        }
+    }
+
+    main{
+        #workstitle,#worksgraphic,#workssupport{
+            margin-bottom: var(--padding-13xl);
+            display: block;
+        }
+        section.output{
+                display: grid;
+                /* grid-template-columns: repeat(auto-fit, minmax(280px, 450px)); */
+                grid-template-columns: repeat(auto-fit, minmax(350px, 435px));
+                gap: var(--gap-13xl) var(--gap-5xl);
+                justify-content: center;
+                align-content: start;
+                align-items: start;
+
+            > div{
+                flex-direction: column;
+                border: 1px solid var(--border-default-default);
+                border-radius: var(--br-5xs);
+                padding: var(--padding-base);
+                align-items: center;
+                max-width: 420px;
+                gap: var(--gap-5xl);
+                
+                button{
+                    align-self: center;
+                    letter-spacing: unset;
+                    padding: .25em .5em;
+                }
+                p{
+                    text-align: justify;
+                }
+                button a{
+                    font-size: 1rem;
+                }
+                .secImg{
+                    img{
+                        width: 100%;
+                        height: auto;
+                    }
+     
+                }
+            }
+        }
+        section#worksgraphic{
+            + section.output{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+      
+                align-content: flex-start;
+                align-items: flex-start;
+
+
+                >div{
+                    /* background-color: red; */
+                    border: none;
+                    max-width: unset;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: flex-start;
+
+                    div{
+                        display: block;
+                    }
+                    h3{
+                        font-size: var(--font-size-5xl);
+                        font-weight: 600;
+                        margin-bottom: var(--small-text-size);
+                    }
+                    p{
+                        margin-bottom: var(--small-text-size);
+                    }
+                    h3+p{
+                        font-size: var(--font-size-lg);
+                        color: var(--border-neutral-secondary);
+                    }
+
+                }
+                
+            }
+        }
+        section#workssupport{
+            padding-bottom: 150px;
+            >div{
+                display: block;
+            }
+            div.basedcol{
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--gap-5xl);
+                /* flex-direction: row;
+                justify-content: space-between; */
+            }
+            
+        }
+    }
+}
 
 /* レスポンシブCSS */
 
@@ -409,20 +524,32 @@ footer .basew{
         }
 
         header{
-            height:min(70vh,700px);
-            background-position: center;
-            background-size:100%;
-
             nav{
                 ul{
                     column-gap: var(--gap-base);
                 }
 
             }
+        }
+
+        #home header{
+            height:min(70vh,700px);
+            background-position: center;
+            background-size:100%;
 
             #heroMessage{
                 height: min(50vh,500px);
             }
+        }
+        #works header{
+            height: 250px;
+            background-position: right -10px top 50px;
+            background-size: calc(100vw - 400px);
+    
+                #heroMessage{
+                    height: 180px;
+                }
+            
         }
 
         main{
@@ -431,10 +558,11 @@ footer .basew{
                 .secImg img{
                     width: min(280px, 350px);
                 }
-
             }
         }
     }
+
+
 
     /* 画面サイズ 630px 未満 */
     @media (width < 630px) {
@@ -442,6 +570,10 @@ footer .basew{
             nav{
                 display: none;
             }
+        }
+        #works header{
+            background-size: 280px;
+            background-position: right -10px top 100px;
         }
 
         footer{
@@ -456,8 +588,9 @@ footer .basew{
                 row-gap: .45em;
 
                 nav ul{
-                    gap: var(--small-text-size);
+                    /* gap: var(--small-text-size); */
                     /* justify-content: space-around; */
+                    gap:2%;
                 }
                 nav a{
                     /* text-decoration: underline; */
@@ -500,9 +633,13 @@ footer .basew{
                 }
             }
 
+
             section#contact{
-                p{
-                    text-align: left !important;
+                div p{
+                    text-align: left;
+                }
+                div p:first-of-type{
+                    text-align: center;
                 }
 
                 div{
@@ -533,4 +670,50 @@ footer .basew{
             }
  
         }
+
+        #workers{
+            main{
+                section.output{
+                    display: flex;
+                    grid-template-columns: 1fr;
+                    gap: var(--gap-13xl);
+                    justify-content: center;
+                    align-content: unset;
+                    align-items: unset;
+                }
+
+            }
+        }
+        /* 制作事例ページ　works */
+        #works{
+            main{
+                section#worksgraphic{
+                    + section.output{
+                        >div{
+                            flex-direction: column;
+                        }
+                    }
+                }
+
+                section#workssupport{
+                    
+                    div.basedcol{
+                        grid-template-columns: unset;
+                    }
+                    
+                }
+                section#worksgraphic{
+                    + section.output{
+                        >div{
+                            h3{
+                                font-size: var(--font-size-xl);
+                                font-weight: 600;
+                                margin-bottom: var(--small-text-size);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
     }

@@ -7,7 +7,7 @@
     "Hiragino Sans",
     Meiryo,
     sans-serif;
-    color:var( --border-neutral-secondary)
+    color:var(--text-neutral-default);
 
 }
 
@@ -20,7 +20,7 @@ body {
 
 :root {
     scroll-behavior: smooth;
-    
+
     --contentWidth:1200px;
     
     /* fonts */
