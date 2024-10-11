@@ -46,8 +46,7 @@ header{
     }
     a{
         display: block;
-        padding: var(--space-200);
-        
+        padding:var(--space-200) .1rem;
     }
     #logo{
         margin-top: -.25rem;
@@ -159,15 +158,15 @@ header{
 
 }
 #home header{
-    height: 700px;
+    height: 600px;
 
-    background-image: url(../images/person.png);
+    /* background-image: url(../images/person.png); */
     background-repeat: no-repeat;
     background-position: right 11vh;
     background-size:contain;
 
     #heroMessage{
-        height: 600px;
+        height: 500px;
     }
 }
 
@@ -193,7 +192,7 @@ main{
             background-color: var(--background-warning-hover);
             align-self:flex-start;
             padding: var(--padding-xs) var(--padding-5xl);
-            letter-spacing: 0.2rem;
+            /* letter-spacing: 0.2rem; */
             border-radius: var(--br-5xs);
             color: var(--text-brand-on-brand);
 
@@ -216,7 +215,10 @@ main{
             font-weight: 600;
             margin-bottom: var(--small-text-size);
             font-size: var(--font-size-13xl);
-            font-family: var(--font-albert-sans);
+            span{
+                font-weight: normal;
+                letter-spacing: -.25rem;
+            }
         }
 
         h2::first-letter{
@@ -233,11 +235,14 @@ main{
             width: clamp(300px, 425px, 624px);
         }
         .charactor{
-            font-weight: 600px;
-            font-size: var(--font-size-21xl);
+            font-size: var(--font-size-xl);
+            color: var(--text-neutral-secondary);
         }
         .charactor span{
             color: var(--color-saddlebrown);
+            font-weight: 600;
+            font-size: 1.75rem;
+            display: inline-block;
         }
 
         form{
@@ -444,6 +449,7 @@ footer .basew{
                 }
                 p{
                     text-align: justify;
+                    color: var(--text-neutral-secondary);
                 }
                 button a{
                     font-size: 1rem;
@@ -595,8 +601,10 @@ footer .basew{
                 nav a{
                     /* text-decoration: underline; */
                     display: block;
-                    padding:.5em 1em;
+                    padding:.5em;
                     backdrop-filter: sepia(90%);
+                    font-size: small;
+                    line-height: 1;
                 }
                 nav a:hover,nav a:active{
                     text-decoration: underline;
@@ -643,8 +651,8 @@ footer .basew{
                 }
 
                 div{
-                width: 99%;
-                padding: .25em;
+                    width: 99%;
+                    padding: .25em;
                 }
                 form{
                     width: 95%;
@@ -686,7 +694,16 @@ footer .basew{
         }
         /* 制作事例ページ　works */
         #works{
+
             main{
+                section h2{
+                    font-size: var(--font-size-5xl);
+                    white-space: nowrap;
+                    span{
+                        font-size: var(--font-size-lg);
+                    }
+                }
+
                 section#worksgraphic{
                     + section.output{
                         >div{
@@ -711,6 +728,15 @@ footer .basew{
                                 margin-bottom: var(--small-text-size);
                             }
                         }
+                    }
+                }
+            }
+
+            header{
+                #heroMessage{
+                    div{display:block;}
+                    h1,p{
+                        display: block;
                     }
                 }
             }
