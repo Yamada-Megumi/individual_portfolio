@@ -49,21 +49,31 @@ header{
         padding:var(--space-200) .1rem;
     }
     #logo{
-        margin-top: -.25rem;
+        margin-top: -0.25rem;
         a{
             padding-left: 0;
             font-weight: 600;
             font-size: var(--font-size-5xl);
+            letter-spacing: -0.06rem;
+            text-shadow: var(--drop-shadow-100);
         }
         a span{
+            display: inline-block;
+            font-size: var(--font-size-xl);
+        }
+        a span:nth-of-type(1),a span:nth-of-type(3){
+            color: var(--border-neutral-secondary);
+            font-weight: normal;
+        }
+
+        a span:nth-of-type(2){
             font-weight: 600;
             color: var(--text-warning-tertiary);
             padding-left:0.2em;
         }
         a::first-letter{
             font-size: 1.1em;
-            font-weight: 600;
-            color: var(--color-black);
+            color: var(--border-neutral-secondary);
         }
     } 
     
@@ -215,9 +225,12 @@ main{
             font-weight: 600;
             margin-bottom: var(--small-text-size);
             font-size: var(--font-size-13xl);
+
             span{
                 font-weight: normal;
-                letter-spacing: -.25rem;
+                letter-spacing: -.1rem;
+                color: var(--text-neutral-secondary);
+                font-size: var(--font-size-xl);
             }
         }
 
@@ -636,8 +649,9 @@ footer .basew{
                 }
 
                 .secImg img{
-                    width: 100%;
+                    width: 60%;
                     height: auto;
+                    margin: auto;
                 }
             }
 
