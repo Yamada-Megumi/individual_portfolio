@@ -135,12 +135,17 @@ header{
         font-size: var(--small-text-size);
     }
 
+    
+
+
     button a{
         display: block;
         padding: 20px 32px;
         color: var(--text-neutral-on-neutral);
         cursor: pointer;
     }
+
+
     button:hover,button a:hover{
         background-color: #10a411;
         color: white;
@@ -201,7 +206,6 @@ main{
         div button{
             background-color: var(--background-warning-hover);
             align-self:flex-start;
-            padding: var(--padding-xs) var(--padding-5xl);
             /* letter-spacing: 0.2rem; */
             border-radius: var(--br-5xs);
             color: var(--text-brand-on-brand);
@@ -209,9 +213,12 @@ main{
         }
         button a{
             display: block;
+            padding: var(--padding-xs) var(--padding-5xl);
             cursor: pointer;
+            font-size: var(--small-text-size);
             color: var(--text-neutral-on-neutral);
         }
+
 
         div{
             display: flex;
@@ -258,7 +265,7 @@ main{
             display: inline-block;
         }
 
-        form{
+        #form{
             width: 70%;
             margin-left: auto;
             margin-right: auto;
@@ -269,7 +276,7 @@ main{
                 display: block;
             }
             p button, 
-            p label{display: block;}
+            p label{display: block;padding: .5em .75em;}
             p label{
                 width: 6rem;
             }
@@ -287,15 +294,19 @@ main{
             input,textarea{
                 background-color: white;
                 border: 1px solid #ccc;
-                padding: .25em .5em;
+                padding: .5em .75em;
                 border-radius: var(--br-5xs);
                 width: 90%;
+                font-size: var(--font-size-lg);
             }
             textarea{
-                height: 6rem;
+                height: 7em;
             }
             input:focus,textarea:focus {
                 outline: none;      
+            }
+            input::placeholder,textarea::placeholder{
+                font-size: var(--font-size-sm);
             }
 
             p.agree{
@@ -312,21 +323,52 @@ main{
                 padding-top: 1em;
             }
             input[type="checkbox"]{
+                appearance: none;
+                -webkit-appearance: none; /* Safari and Chrome */
+                -moz-appearance: none; /* Firefox */
+                margin: 0;
+                margin-right: var(--small-text-size);
+                width: var(--font-size-lg);
+                height: var(--font-size-lg);
+                vertical-align: middle;
+                border-radius: 3px;
+
+                background-color: #fff;
+                position: relative;
+                top: -2px;
+
                 background-color: white;
                 border: 1px solid #ccc;
-                padding: .25em .5em;
-                border-radius: var(--br-5xs);
-                width: 2em;
+                padding: .5em .5em;
             }
+            input[type="checkbox"]:checked  {
+                background-color: #fff;
+                background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23f09896" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>');
+                background-size: 100% auto;
+                background-repeat: no-repeat;
+                background-position: center;
+              }
+
             p.agree label{
                 display: block;
                 padding-top: 1em;
                 width: 100%;
 
             }
+
             p:last-of-type button{
                 /* background-color: red; */
                 margin: auto;
+                /* padding: unset; */
+            }
+            button {
+                color:var(-background-default-default);
+            }
+            button[disabled] {
+                box-shadow: var(--button-shadow);
+                border-radius: var(--br-5xs);
+                background-color: var(--border-neutral-secondary);
+                cursor: not-allowed;;
             }
         }
     }
@@ -363,7 +405,7 @@ main{
         }
 
 
-        div{
+        div:not(#form){
         width: 80%;
         padding:var(--padding-13xl);
         margin: auto;
@@ -532,9 +574,110 @@ footer .basew{
     }
 }
 
+
+.modal {
+    display: none;
+    place-items: start center;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    max-width:800px;
+
+    position: relative;
+    #formsend{
+        padding: 2em;
+        p{
+            padding: .25em;
+            margin-bottom: .25em;
+        }
+        input[type="submit"]{
+            margin: auto;
+            cursor: pointer;
+            background-color: var(--background-warning-hover);
+            align-items:flex-start;
+            border-radius: var(--br-5xs);
+            color: var(--text-brand-on-brand);
+            display: block;
+            padding: .5em .75em;
+            border: none;
+        }
+        .check1 p,.check2 p,.check3 p{
+            white-space: nowrap;
+            vertical-align: middle;
+            align-content: center;
+            padding: 0;
+            margin-bottom: 0;
+            width:5rem
+        }
+    
+    }
+
+    .close, .close-button {
+        color: #aaa;
+        text-align: right;
+        font-size: 28px;
+        display: block;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .close:hover,
+    .close:focus,
+    .close-button:hover,
+    .close-button:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        /* font-size: 16px; */
+        background: none;
+        border: none;
+        /* display: block; */
+        
+        font-size:10px
+    }
+    div#none{
+        /* padding:1.5em; */
+        text-align: center;
+    }
+    .check1,.check2,.check3{
+        display: flex;
+        border-bottom: 1px solid #ccc;
+        justify-self: start;
+        align-items: center;
+        line-height: 1.5;
+        padding-bottom: .5em;
+        margin-bottom: .5em;
+        
+    }
+
+
+
+}
+
+
+
+
 /* レスポンシブCSS */
 
     /* 画面サイズ 930px 未満 */
+    .modal-content {
+        width: 90%;
+    }
     @media (width < 930px) {
 
         header,main,footer{
@@ -585,6 +728,13 @@ footer .basew{
 
     /* 画面サイズ 630px 未満 */
     @media (width < 630px) {
+        .modal-content {
+            width: 95%;
+            #formsend{
+                padding: unset;
+            }
+        }
+
         header{
             nav{
                 display: none;
@@ -664,11 +814,11 @@ footer .basew{
                     text-align: center;
                 }
 
-                div{
+                div:not(#form){
                     width: 99%;
                     padding: .25em;
                 }
-                form{
+                #form{
                     width: 95%;
                     
                     p label{
@@ -677,6 +827,7 @@ footer .basew{
                     p{
                         flex-direction: column;
                         gap:.5rem;
+                        margin-bottom: 0;
                     }
         
                     input,textarea{
@@ -684,7 +835,8 @@ footer .basew{
                     }
 
                     input[type="checkbox"]{
-                        width: 2em;
+                        width: 1.5em;
+                        height: 1.5em;
                     }
                     
                 }
@@ -753,6 +905,18 @@ footer .basew{
                         display: block;
                     }
                 }
+            }
+        }
+        .modal-content {
+            & #formsend {
+                .check1 p, .check2 p, .check3 p {
+                    margin-bottom: 0;
+                    padding:0;
+                }
+                .check1,.check2,.check3{
+                    flex-direction: column;
+                }
+
             }
         }
 

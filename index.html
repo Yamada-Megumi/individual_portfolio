@@ -143,29 +143,66 @@
 
 				<p>お名前、メールアドレス、内容をすべて入力してください。<br>メールを送信された場合、送信内容を入力したEmailアドレス宛にメールを送信していまます。受信できているかご確認ください。</p>
 
-				<form action="#" method="post">
+				<div id="form">
 
 					<p><label for="name">お名前</label>
-						<input type="text" name="name" id="name">
+						<input type="text" name="name" id="name" placeholder="お名前の入力">
 					</p>
 					<p><label for="email">Email</label>
-						<input type="email" name="email" id="email">
+						<input type="email" name="email" id="email" placeholder="メールアドレスの入力">
 					</p>
 					<p><label for="area">内容</label>
-						<textarea name="message" id="area"></textarea>
+						<textarea name="message" id="area" placeholder="問い合わせ内容の入力"></textarea>
 					</p>
 
 
-					<p class="agree"><small>個人情報取扱いについて<br>ご入力いただいた情報は、お問い合わせの返信のみ以外に利用いたしません。</small>
+					<p class="agree"><small>個人情報取扱いについて<br>ご入力いただいた情報は、お問い合わせのみ利用いたします。</small>
 						<label><input type="checkbox" name="agree" id="agree"> <em>同意する</em>（ご同意していただくと送信できます）
 						</label>
 					</p>
-					<p><button><a href="#works">入力内容を確認する</a></button></p>
-				</form>
+					<p><button id="openModal" disabled>入力内容を確認する</button></p>
+
+				</div>
 			</div>
 		</section>
 	</main>
+	<div id="mod" class="modal">
+		<div class="modal-content">
+			<div id="none">
+				<span class="close">&times;</span>
+				<button class="close-button">閉じる</button>
+			</div>
 
+			<form action="#" method="post" id="formsend">
+				<p style="padding-bottom: 1em;font-size: .9em;">
+					入力内容をご確認ください。<br>
+					送信する場合は、送信ボタンをクリックします。修正する場合は、閉じるボタンをクリックしてください。<br>
+					ご記入いただいたメールアドレスに送信されたメールを自動的に送信させています。
+				</p>
+
+				<div style="padding:1em">
+					<div class="check1">
+						<p>お名前：</p>
+						<div></div>
+					</div>
+					<div class="check2">
+						<p>email：</p>
+						<div></div>
+
+					</div>
+					<div class="check3">
+						<p>内容：</p>
+						<div></div>
+					</div>
+				</div>
+				<input type="hidden" name="user" value="A">
+				<input type="hidden" name="mail" value="B">
+				<input type="hidden" name="memo" value="C">
+				<p><input type="submit" value="送信する" id="submit"></p>
+
+			</form>
+		</div>
+	</div>
 
 
 	<footer>
@@ -197,7 +234,100 @@
 		</div>
 	</footer>
 
+	<script>
+		const escapeHTML = (string) => {
+			return string.replace(/&/g, '&lt;')
+				.replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;')
+				.replace(/"/g, '&quot;')
+				.replace(/'/g, "&#x27;");
+		};
 
+
+		// 送信ボタンをクリックしたら、チェックボックスがチェックされているか確認し、チェックされていない場合は送信できないようにする
+		const agree = document.querySelector('#agree');
+		const button = document.querySelector('#contact button');
+		// 初期値セット　送信ボタンを無効にする
+		button.disabled = true;
+		// モーダルウィンドウを表示
+		const modal = document.querySelector("#mod");
+		const btn = document.querySelector("#openModal");
+		const span = document.querySelector(".close");
+		const closeButton = document.querySelector(".close-button");
+
+		// 送信
+		const submit = document.querySelector('#submit');
+
+
+		agree.addEventListener('change', () => {
+			if (agree.checked) {
+				button.disabled = false;
+				console.log(agree.checked);
+				button.addEventListener('click', () => {
+					event.preventDefault();
+					const user = escapeHTML(document.querySelector('#name').value);
+					const email = escapeHTML(document.querySelector('#email').value);
+					const message = escapeHTML(document.querySelector('#area').value);
+
+					console.log(user, email, message);
+					// 送信データ作成
+					const huser = document.querySelector('input[name="user"]');
+					const hmail = document.querySelector('input[name="mail"]');
+					const hmemo = document.querySelector('input[name="memo"]');
+
+					huser.setAttribute("value", user);
+					hmail.setAttribute("value", email);
+					hmemo.setAttribute("value", message);
+
+					// 要素を追加
+					// id属性で要素を取得
+					const textbox_element = document.getElementById('formsend');
+
+					// 確認用の新しいHTML要素を作成
+					const userS = document.querySelector('.check1 div');
+					const emailS = document.querySelector('.check2 div');
+					const messageS = document.querySelector('.check3 div');
+					// const messageS = document.createElement('div');
+					const messageS2 = message.replace(/\r?\n/g, '<br>');
+
+					userS.textContent = user;
+					emailS.textContent = email;
+					// messageT.textContent = "内容：";
+					messageS.innerHTML = messageS2;
+
+					// const SS = messageS.textContent = message;
+
+					// textbox_element.insertBefore(userS, submit);
+					// textbox_element.insertBefore(emailS, submit);
+					// textbox_element.insertBefore(messageT, submit);
+					// textbox_element.insertBefore(messageS, submit);
+					// conaole.log(messageS.textContent = message);
+
+					modal.style.display = "grid";
+				});
+
+			} else {
+				button.disabled = true;
+			}
+		});
+
+		span.onclick = () => {
+			modal.style.display = "none";
+			event.preventDefault();
+
+		}
+
+		closeButton.onclick = () => {
+			modal.style.display = "none";
+			event.preventDefault();
+		}
+
+
+
+
+
+
+	</script>
 </body>
 
 </html>
