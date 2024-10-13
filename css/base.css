@@ -529,7 +529,7 @@ footer .basew{
                 button{
                     align-self: center;
                     letter-spacing: unset;
-                    padding: .25em .5em;
+                    padding: 0 1em;
                 }
                 p{
                     text-align: justify;
@@ -538,6 +538,14 @@ footer .basew{
                 button a{
                     font-size: 1rem;
                 }
+                a[href^="http"]{
+                    background-image: url(../images/link.svg);
+                    background-repeat: no-repeat;
+                    background-position: center right;
+                    background-size: 12px;
+                    padding-right: calc(14px + 1rem);
+                }
+
                 .secImg{
                     img{
                         width: 100%;
