@@ -655,11 +655,12 @@ footer .basew{
 
     .close, .close-button {
         color: #aaa;
-        text-align: right;
-        font-size: 28px;
+        text-align: center;
+        font-size: 3rem;
         display: block;
         font-weight: bold;
         cursor: pointer;
+        padding-right: 10px;
     }
     .close:hover,
     .close:focus,
@@ -670,19 +671,19 @@ footer .basew{
         cursor: pointer;
     }
     .close-button {
-        position: absolute;
-        top: 10px;
         right: 10px;
-        /* font-size: 16px; */
         background: none;
-        border: none;
-        /* display: block; */
-        
-        font-size:10px
+        font-size: 0.7em;
+        text-align: right;
+        padding-right: 5px;
     }
     div#none{
-        /* padding:1.5em; */
-        text-align: center;
+        display: flex;
+        align-items: flex-end;
+        align-content: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 0;
     }
     .check1,.check2,.check3{
         display: flex;

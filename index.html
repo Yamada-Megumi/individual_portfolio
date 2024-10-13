@@ -9,9 +9,19 @@
 	<meta property="og:title" content="webコーディングします。やまだめぐみのポートフォリオ">
 	<meta property="og:description" content="やまだめぐみのPortfolio(ポートフォリオ)/Web制作のお手伝いをします。お気軽にお問い合わせください">
 	<meta property="og:image" content="https://XXXimage.jpg">
-	<meta property="og:url" content="https://XXX/page-url">
+	<meta property="og:url" content="https://www.st-yamada.com/">
 	<meta property="og:type" content="website">
 	<meta property="og:site_name" content="Works of やまだめぐみ">
+	<!-- Google Tag Manager -->
+	<script>(function (w, d, s, l, i) {
+			w[l] = w[l] || []; w[l].push({
+				'gtm.start':
+					new Date().getTime(), event: 'gtm.js'
+			}); var f = d.getElementsByTagName(s)[0],
+				j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+					'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+		})(window, document, 'script', 'dataLayer', 'GTM-M828L3TJ');</script>
+	<!-- End Google Tag Manager -->
 	<link rel="alternate" href="https://www.st-yamada.com/index.html" hreflang="ja">
 	<link rel="alternate" href="https://www.st-yamada.com/en/index.html" hreflang="en">
 	<link rel="stylesheet" href="./css/styleset.css">
@@ -20,11 +30,22 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu Sans:wght@600&display=swap">
 
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert Sans:wght@500;600;800&display=swap">
-
-
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8DYMMDCP46"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag() { dataLayer.push(arguments); }
+	gtag('js', new Date());
+
+	gtag('config', 'G-8DYMMDCP46');
+</script>
 
 <body id="home">
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M828L3TJ" height="0" width="0"
+			style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
 	<header>
 		<div id="navigation">
 			<div id="logo">
@@ -193,8 +214,7 @@
 				<h2>Contact me</h2>
 				<p><a href="https://lin.ee/7dDwTpw"></a><img src="./images/lineadd.png" alt="お問い合わせ用"></a></p>
 				<p>LinkedIn、LINE（お友達登録後）から、お問い合わせいただけます。</p>
-				<p>以下のお問い合わせフォームからもお問い合わせいただきます。ただし、現在調整中のため送信できません。お手数をおかけいたしますがLINEや他のSNSから連絡をお願いいたします。
-				</p>
+				<p>以下のお問い合わせフォームからもお問い合わせいただけます。</p>
 
 				<p>お名前、メールアドレス、内容をすべて入力してください。<br>メールを送信された場合、送信内容を入力したEmailアドレス宛にメールを送信していまます。受信の確認をお願いいたします。</p>
 
@@ -228,7 +248,7 @@
 				<button class="close-button">閉じる</button>
 			</div>
 
-			<form action="#" method="post" id="formsend">
+			<form action="./mail.php" method="post" id="formsend">
 				<p style="padding-bottom: 1em;font-size: .9em;">
 					入力内容をご確認ください。<br>
 					送信する場合は、送信ボタンをクリックします。修正する場合は、閉じるボタンをクリックしてください。<br>
@@ -254,7 +274,6 @@
 				<input type="hidden" name="mail" value="メールアドレス">
 				<input type="hidden" name="memo" value="問い合わせ内容">
 				<p><input type="submit" value="送信する" id="submit"></p>
-
 			</form>
 		</div>
 	</div>
