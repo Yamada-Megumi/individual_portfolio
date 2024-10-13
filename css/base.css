@@ -448,7 +448,7 @@ footer .basew{
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: var(--gap-13xl);
+        gap: var(--gap-base);
         color: var(--text-default-default);
     }
     #footername{
@@ -469,8 +469,18 @@ footer .basew{
         }
     }
     .sns ul{
-        gap: var(--gap-5xl);
+        gap: 1.25em;
         font-size: var(--font-size-sm);
+        li a{
+            padding: 1rem;
+        }
+    }
+    .sns svg{
+        height: var(--padding-5xl);
+        width:auto;
+        /* padding:.05rem; */
+
+        fill:var(--text-neutral-secondary);
     }
 
 }
@@ -951,3 +961,73 @@ footer .basew{
         }
 
     }
+
+
+
+/* SNS Block */
+#sns {
+    /* padding: 1em; */
+    padding-top: var(z--space-300);
+    display: grid;
+    place-items: center;
+    /* background: #ebebf6; */
+
+    .socials-container {
+        display: flex;
+        flex-direction: row;
+        gap: var(--space-200);
+        font-size: var(--font-size-sm);
+    }
+    .socials-container a {
+        background-color: white;
+        padding: var(--space-200);
+        border-radius: 50%;
+        height: var(--spacing-m);
+        width: var(--spacing-m);
+        flex-shrink: 0;
+        display: grid;
+        place-items: center;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+    }
+    .socials-container a svg {
+        height: auto;
+        fill:var(--text-neutral-secondary);
+    }
+    .socials-container a::before {
+        content: attr(data-social);
+        position: absolute;
+        background-color: var(--acent-color);
+        color: white;
+        padding: 0.25em 0.75em;
+        border-radius: 100px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+        transform: translateY(-30px) rotate(25deg);
+        opacity: 0;
+        transition: 200ms cubic-bezier(0, 0.45, 0.99, 0.79);
+    }
+    .socials-container a:hover {
+        background-color: var(--text-neutral-secondary);
+        svg{
+            fill: white;
+        }
+    }
+    .socials-container a::after {
+        content: "";
+        position: absolute;
+        background-color: var(--text-neutral-secondary);
+        width: 10px;
+        aspect-ratio: 1 / cos(30deg);
+        clip-path: polygon(50% 100%, 100% 0, 0 0);
+        transform: translateY(-12px) translateX(-10px) rotate(25deg);
+        opacity: 0;
+        transition: 200ms cubic-bezier(0, 0.45, 0.99, 0.79);
+    }
+    .socials-container a:hover::before {
+        transform: translateY(-60px) rotate(0);
+        opacity: 1;
+    }
+    .socials-container a:hover::after {
+        transform: translateY(-41px) translateX(0);
+        opacity: 1;
+    }
+}
