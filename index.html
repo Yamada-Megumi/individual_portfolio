@@ -138,18 +138,18 @@
 				<h2>Contact me</h2>
 				<p><a href="https://lin.ee/7dDwTpw"></a><img src="./images/lineadd.png" alt="お問い合わせ用"></a></p>
 				<p>LinkedIn、LINE（お友達登録後）から、お問い合わせいただけます。</p>
-				<p>以下のお問い合わせフォームからもお問い合わせいただきます。<br>ただし、現在調整中のため送信できません。<br>お手数をおかけいたしますがLINEや他のSNSなどのDMからメッセージを送って下さい。
+				<p>以下のお問い合わせフォームからもお問い合わせいただきます。ただし、現在調整中のため送信できません。お手数をおかけいたしますがLINEや他のSNSから連絡をお願いいたします。
 				</p>
 
-				<p>お名前、メールアドレス、内容をすべて入力してください。<br>メールを送信された場合、送信内容を入力したEmailアドレス宛にメールを送信していまます。受信できているかご確認ください。</p>
+				<p>お名前、メールアドレス、内容をすべて入力してください。<br>メールを送信された場合、送信内容を入力したEmailアドレス宛にメールを送信していまます。受信の確認をお願いいたします。</p>
 
 				<div id="form">
 
 					<p><label for="name">お名前</label>
-						<input type="text" name="name" id="name" placeholder="お名前の入力">
+						<input type="text" name="name" id="name" placeholder="お名前の入力" autocomplete="name">
 					</p>
 					<p><label for="email">Email</label>
-						<input type="email" name="email" id="email" placeholder="メールアドレスの入力">
+						<input type="email" name="email" id="email" placeholder="メールアドレスの入力" autocomplete="email">
 					</p>
 					<p><label for="area">内容</label>
 						<textarea name="message" id="area" placeholder="問い合わせ内容の入力"></textarea>
@@ -195,9 +195,9 @@
 						<div></div>
 					</div>
 				</div>
-				<input type="hidden" name="user" value="A">
-				<input type="hidden" name="mail" value="B">
-				<input type="hidden" name="memo" value="C">
+				<input type="hidden" name="user" value="おなまえ">
+				<input type="hidden" name="mail" value="メールアドレス">
+				<input type="hidden" name="memo" value="問い合わせ内容">
 				<p><input type="submit" value="送信する" id="submit"></p>
 
 			</form>
@@ -235,6 +235,24 @@
 	</footer>
 
 	<script>
+		// エラー処理
+		let error = 0;
+		const errorMessages = {
+			name: {
+				n: "お名前の入力",
+				m: "未入力です"
+			},
+			email: {
+				n: "メールアドレスの入力",
+				m: "未入力またはメールアドレスが正しくありません"
+			},
+			message: {
+				n: "問い合わせ内容の入力",
+				m: "未入力です"
+			}
+		};
+
+		//　HTMLエスケープ処理
 		const escapeHTML = (string) => {
 			return string.replace(/&/g, '&lt;')
 				.replace(/</g, '&lt;')
@@ -242,6 +260,10 @@
 				.replace(/"/g, '&quot;')
 				.replace(/'/g, "&#x27;");
 		};
+		//入力チェック & エラー対応用
+		const userElement = document.querySelector('#name');
+		const emailElement = document.querySelector('#email');
+		const messageElement = document.querySelector('#area');
 
 
 		// 送信ボタンをクリックしたら、チェックボックスがチェックされているか確認し、チェックされていない場合は送信できないようにする
@@ -258,26 +280,28 @@
 		// 送信
 		const submit = document.querySelector('#submit');
 
-
 		agree.addEventListener('change', () => {
 			if (agree.checked) {
 				button.disabled = false;
-				console.log(agree.checked);
+				// console.log(agree.checked);
 				button.addEventListener('click', () => {
 					event.preventDefault();
-					const user = escapeHTML(document.querySelector('#name').value);
-					const email = escapeHTML(document.querySelector('#email').value);
-					const message = escapeHTML(document.querySelector('#area').value);
+					// 入力内容を取得
+					const user = userElement.value;
+					const email = emailElement.value;
+					const message = messageElement.value;
 
-					console.log(user, email, message);
+					// メールアドレスの正規表現 | メールアドレスのチェック用
+					const mail_regex = /^[a-z]+[a-z0-9_-]+@[a-z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/i;
+
 					// 送信データ作成
 					const huser = document.querySelector('input[name="user"]');
 					const hmail = document.querySelector('input[name="mail"]');
 					const hmemo = document.querySelector('input[name="memo"]');
 
-					huser.setAttribute("value", user);
-					hmail.setAttribute("value", email);
-					hmemo.setAttribute("value", message);
+					huser.setAttribute("value", escapeHTML(user));
+					hmail.setAttribute("value", escapeHTML(email));
+					hmemo.setAttribute("value", escapeHTML(message));
 
 					// 要素を追加
 					// id属性で要素を取得
@@ -287,29 +311,46 @@
 					const userS = document.querySelector('.check1 div');
 					const emailS = document.querySelector('.check2 div');
 					const messageS = document.querySelector('.check3 div');
-					// const messageS = document.createElement('div');
 					const messageS2 = message.replace(/\r?\n/g, '<br>');
 
-					userS.textContent = user;
-					emailS.textContent = email;
-					// messageT.textContent = "内容：";
-					messageS.innerHTML = messageS2;
+					userS.textContent = escapeHTML(user);
+					emailS.textContent = escapeHTML(email);
+					messageS.innerHTML = escapeHTML(messageS2);
 
-					// const SS = messageS.textContent = message;
 
-					// textbox_element.insertBefore(userS, submit);
-					// textbox_element.insertBefore(emailS, submit);
-					// textbox_element.insertBefore(messageT, submit);
-					// textbox_element.insertBefore(messageS, submit);
-					// conaole.log(messageS.textContent = message);
+					if (!user) {
+						userElement.setAttribute("placeholder", errorMessages.name.m);
+						userElement.setAttribute("class", "error");
+					} else {
+						userElement.removeAttribute("class", "error");
+					}
+					if (!message) {
+						messageElement.setAttribute("placeholder", errorMessages.message.m);
+						messageElement.setAttribute("class", "error");
+					} else {
+						messageElement.removeAttribute("class", "error");
+					}
 
-					modal.style.display = "grid";
+
+					if (!email || !mail_regex.test(email)) {
+						emailElement.setAttribute("placeholder", errorMessages.email.m);
+						emailElement.setAttribute("class", "error");
+					} else {
+						emailElement.removeAttribute("class", "error");
+					}
+
+					// モーダルウィンドウを表示する
+					if (user !== "" && email !== "" && message !== "" && mail_regex.test(email)) {
+						modal.style.display = "grid";
+					}
+
 				});
 
 			} else {
 				button.disabled = true;
 			}
 		});
+
 
 		span.onclick = () => {
 			modal.style.display = "none";
@@ -321,12 +362,6 @@
 			modal.style.display = "none";
 			event.preventDefault();
 		}
-
-
-
-
-
-
 	</script>
 </body>
 

@@ -275,10 +275,13 @@ main{
             label{
                 display: block;
             }
-            p button, 
+            button, 
             p label{display: block;padding: .5em .75em;}
             p label{
                 width: 6rem;
+            }
+            button{
+                background-color: var(--background-positive-default);
             }
             p{
                 text-align: left;
@@ -307,6 +310,14 @@ main{
             }
             input::placeholder,textarea::placeholder{
                 font-size: var(--font-size-sm);
+            }
+            input.error,textarea.error{
+                border-color: var(--color-saddlebrown);
+                color: var(--color-saddlebrown);
+            }
+            input.error::placeholder,
+            textarea.error::placeholder{
+                color: var(--background-warning-hover);
             }
 
             p.agree{
@@ -343,7 +354,7 @@ main{
             }
             input[type="checkbox"]:checked  {
                 background-color: #fff;
-                background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23f09896" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>');
+                background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23e5a000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>');
                 background-size: 100% auto;
                 background-repeat: no-repeat;
                 background-position: center;
@@ -357,12 +368,7 @@ main{
             }
 
             p:last-of-type button{
-                /* background-color: red; */
                 margin: auto;
-                /* padding: unset; */
-            }
-            button {
-                color:var(-background-default-default);
             }
             button[disabled] {
                 box-shadow: var(--button-shadow);
@@ -403,6 +409,19 @@ main{
         div p img{
             display: inline-block;
         }
+
+        h2 {
+            ~ p:last-of-type{
+            font-size: var(--small-text-siz);
+            }
+            ~ p:last-of-type::before{
+                content: "! ";
+                font-weight: bold;
+                color: var(--text-warning-tertiary);
+                font-size: var(--font-size-xl);
+            }
+        }
+
 
 
         div:not(#form){
@@ -595,6 +614,7 @@ footer .basew{
     max-width:800px;
 
     position: relative;
+
     #formsend{
         padding: 2em;
         p{
@@ -716,10 +736,18 @@ footer .basew{
 
         main{
             section{
-
                 .secImg img{
                     width: min(280px, 350px);
                 }
+            }
+            #contact{
+                p:not(:first-of-type){
+                    text-align: left;
+                }               
+                #form {
+                    width: 100%;
+                }           
+
             }
         }
     }
@@ -744,6 +772,7 @@ footer .basew{
             background-size: 280px;
             background-position: right -10px top 100px;
         }
+ 
 
         footer{
             position: fixed;
@@ -834,9 +863,10 @@ footer .basew{
                         width: 100%;
                     }
 
+
                     input[type="checkbox"]{
-                        width: 1.5em;
-                        height: 1.5em;
+                        width: var(--small-text-size);
+                        height: var(--small-text-size);
                     }
                     
                 }
