@@ -251,8 +251,8 @@
 			<form action="./mail.php" method="post" id="formsend">
 				<p style="padding-bottom: 1em;font-size: .9em;">
 					入力内容をご確認ください。<br>
-					送信する場合は、送信ボタンをクリックします。修正する場合は、閉じるボタンをクリックしてください。<br>
-					ご記入いただいたメールアドレスに送信されたメールを自動的に送信させています。
+					送信する場合は、送信ボタンをクリックします。入力内容を修正する場合は、閉じるボタンをクリックしてください。<br>
+					ご記入いただいた内容は入力したメールアドレスへ送信しています。
 				</p>
 
 				<div style="padding:1em">
@@ -356,140 +356,144 @@
 			</div>
 		</div>
 	</footer>
-
-	<script>
-		// エラー処理
-		let error = 0;
-		const errorMessages = {
-			name: {
-				n: "お名前の入力",
-				m: "未入力です"
-			},
-			email: {
-				n: "メールアドレスの入力",
-				m: "未入力またはメールアドレスが正しくありません"
-			},
-			message: {
-				n: "問い合わせ内容の入力",
-				m: "未入力です"
-			}
-		};
-
-		//　HTMLエスケープ処理
-		const escapeHTML = (string) => {
-			return string.replace(/&/g, '&lt;')
-				.replace(/</g, '&lt;')
-				.replace(/>/g, '&gt;')
-				.replace(/"/g, '&quot;')
-				.replace(/'/g, "&#x27;");
-		};
-		//入力チェック & エラー対応用
-		const userElement = document.querySelector('#name');
-		const emailElement = document.querySelector('#email');
-		const messageElement = document.querySelector('#area');
-
-
-		// 送信ボタンをクリックしたら、チェックボックスがチェックされているか確認し、チェックされていない場合は送信できないようにする
-		const agree = document.querySelector('#agree');
-		const button = document.querySelector('#contact button');
-		// 初期値セット　送信ボタンを無効にする
-		button.disabled = true;
-		// モーダルウィンドウを表示
-		const modal = document.querySelector("#mod");
-		const btn = document.querySelector("#openModal");
-		const span = document.querySelector(".close");
-		const closeButton = document.querySelector(".close-button");
-
-		// 送信
-		const submit = document.querySelector('#submit');
-
-		agree.addEventListener('change', () => {
-			if (agree.checked) {
-				button.disabled = false;
-				// console.log(agree.checked);
-				button.addEventListener('click', () => {
-					event.preventDefault();
-					// 入力内容を取得
-					let user = userElement.value;
-					let email = emailElement.value;
-					let message = messageElement.value;
-
-					// メールアドレスの正規表現 | メールアドレスのチェック用
-					const mail_regex = /^[a-z]+[a-z0-9_-]+@[a-z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/i;
-
-					// 送信データ作成
-					const huser = document.querySelector('input[name="user"]');
-					const hmail = document.querySelector('input[name="mail"]');
-					const hmemo = document.querySelector('input[name="memo"]');
-
-					huser.setAttribute("value", escapeHTML(user));
-					hmail.setAttribute("value", escapeHTML(email));
-					hmemo.setAttribute("value", escapeHTML(message));
-
-					// 要素を追加
-					// id属性で要素を取得
-					const textbox_element = document.getElementById('formsend');
-
-					// 確認用の新しいHTML要素を作成
-					const userS = document.querySelector('.check1 div');
-					const emailS = document.querySelector('.check2 div');
-					let messageS = document.querySelector('.check3 div');
-
-					user = escapeHTML(user);
-					email = escapeHTML(email);
-					message = escapeHTML(message);
-
-					userS.textContent = user;
-					emailS.textContent = email;
-					// 改行を<br>に変換
-					messageS.innerHTML = message.replace(/\r?\n/g, '<br>');
-
-
-					if (!user) {
-						userElement.setAttribute("placeholder", errorMessages.name.m);
-						userElement.setAttribute("class", "error");
-					} else {
-						userElement.removeAttribute("class", "error");
-					}
-					if (!message) {
-						messageElement.setAttribute("placeholder", errorMessages.message.m);
-						messageElement.setAttribute("class", "error");
-					} else {
-						messageElement.removeAttribute("class", "error");
-					}
-
-
-					if (!email || !mail_regex.test(email)) {
-						emailElement.setAttribute("placeholder", errorMessages.email.m);
-						emailElement.setAttribute("class", "error");
-					} else {
-						emailElement.removeAttribute("class", "error");
-					}
-
-					// モーダルウィンドウを表示する
-					if (user !== "" && email !== "" && message !== "" && mail_regex.test(email)) {
-						modal.style.display = "grid";
-					}
-
-				});
-
-			} else {
-				button.disabled = true;
-			}
-		});
-
-
-		span.onclick = () => {
-			modal.style.display = "none";
-			event.preventDefault();
-
-		}
-
-		closeButton.onclick = () => {
-			modal.style.display = "none";
-			event.preventDefault();
-		}
-	</script>
 </body>
+
+<script>
+	'use strict';
+	// エラー処理
+	let error = 0;
+	const errorMessages = {
+		name: {
+			n: "お名前の入力",
+			m: "未入力です"
+		},
+		email: {
+			n: "メールアドレスの入力",
+			m: "未入力またはメールアドレスが正しくありません"
+		},
+		message: {
+			n: "問い合わせ内容の入力",
+			m: "未入力です"
+		}
+	};
+
+	//　HTMLエスケープ処理
+	const escapeHTML = (string) => {
+		return string.replace(/&/g, '&lt;')
+			.replace(/</g, '&lt;')
+			.replace(/>/g, '&gt;')
+			.replace(/"/g, '&quot;')
+			.replace(/'/g, "&#x27;");
+	};
+	//入力チェック & エラー対応用
+	const userElement = document.querySelector('#name');
+	const emailElement = document.querySelector('#email');
+	const messageElement = document.querySelector('#area');
+
+
+	// 送信ボタンをクリックしたら、チェックボックスがチェックされているか確認し、チェックされていない場合は送信できないようにする
+	const agree = document.querySelector('#agree');
+	const button = document.querySelector('#contact button');
+	// 初期値セット　送信ボタンを無効にする
+	button.disabled = true;
+	// モーダルウィンドウを表示
+	const modal = document.querySelector("#mod");
+	const btn = document.querySelector("#openModal");
+	const span = document.querySelector(".close");
+	const closeButton = document.querySelector(".close-button");
+
+	// 送信
+	const submit = document.querySelector('#submit');
+
+	agree.addEventListener('change', () => {
+		if (agree.checked) {
+			button.disabled = false;
+			// console.log(agree.checked);
+			button.addEventListener('click', () => {
+				event.preventDefault();
+				// 入力内容を取得
+				let user = userElement.value;
+				let email = emailElement.value;
+				let message = messageElement.value;
+
+				// メールアドレスの正規表現 | メールアドレスのチェック用
+				const mail_regex = /^[a-z]+[a-z0-9_-]+@[a-z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/i;
+
+				// 送信データ作成
+				const huser = document.querySelector('input[name="user"]');
+				const hmail = document.querySelector('input[name="mail"]');
+				const hmemo = document.querySelector('input[name="memo"]');
+
+				huser.setAttribute("value", escapeHTML(user));
+				hmail.setAttribute("value", escapeHTML(email));
+				hmemo.setAttribute("value", escapeHTML(message));
+
+				// 要素を追加
+				// id属性で要素を取得
+				const textbox_element = document.getElementById('formsend');
+
+				// 確認用の新しいHTML要素を作成
+				const userS = document.querySelector('.check1 div');
+				const emailS = document.querySelector('.check2 div');
+				let messageS = document.querySelector('.check3 div');
+
+				user = escapeHTML(user);
+				email = escapeHTML(email);
+				message = escapeHTML(message);
+
+				userS.textContent = user;
+				emailS.textContent = email;
+				// 改行を<br>に変換
+				messageS.innerHTML = message.replace(/\r?\n/g, '<br>');
+
+
+				if (!user) {
+					userElement.setAttribute("placeholder", errorMessages.name.m);
+					userElement.setAttribute("class", "error");
+				} else {
+					userElement.removeAttribute("class", "error");
+				}
+				if (!message) {
+					messageElement.setAttribute("placeholder", errorMessages.message.m);
+					messageElement.setAttribute("class", "error");
+				} else {
+					messageElement.removeAttribute("class", "error");
+				}
+
+
+				if (!email || !mail_regex.test(email)) {
+					emailElement.setAttribute("placeholder", errorMessages.email.m);
+					emailElement.setAttribute("class", "error");
+				} else {
+					emailElement.removeAttribute("class", "error");
+				}
+
+				// モーダルウィンドウを表示する
+				if (user !== "" && email !== "" && message !== "" && mail_regex.test(email)) {
+					modal.style.display = "grid";
+				}
+
+			});
+
+		} else {
+			button.disabled = true;
+		}
+	});
+
+
+	span.onclick = () => {
+		modal.style.display = "none";
+		event.preventDefault();
+
+	}
+
+	closeButton.onclick = () => {
+		modal.style.display = "none";
+		event.preventDefault();
+	}
+</script>
+
+
+<script src="./js/cook.js"></script>
 
 </html>

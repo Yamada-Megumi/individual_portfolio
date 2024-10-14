@@ -10,7 +10,7 @@
 a{
     text-decoration: none;
 }
-a:hover{
+a:hover,a:active{
     opacity: 0.8;
 }
 
@@ -20,6 +20,22 @@ body{
 }
 h3{
     color:var(--text-neutral-secondary);
+}
+
+#cookieButton{
+    border: 0;
+    cursor: pointer;
+    padding: .4em 1rem;
+    white-space: nowrap;
+    box-shadow: var(--button-shadow);
+    border-radius: var(--br-5xs);
+    background-color: var(--background-default-default);
+}
+#cookieButton:hover{
+    opacity: .7;
+    background-color: var(--background-positive-default);
+    color:var(--background-default-default);
+    transition: all .5s ease-out;
 }
 
 
@@ -94,22 +110,7 @@ header{
 
             a{
                 font-size: var(--font-size-lg);
-            }
-
-
-            .contactBtn a{
-                border-radius: var(--br-5xs);
-                background-color: var(--background-positive-default);
-                color: var(--background-default-default);
-                padding:.5em .75em
-
-            }
-            .contactBtn a:hover{
-                background-color: #10a411;
-                color: white;
-                opacity: unset;
-            }
-            
+            }           
         }
     }
     
@@ -128,15 +129,29 @@ header{
     p{
         font-size: var(--font-size-5xl);
     }
-    button{
-        box-shadow: var(--button-shadow);
+    .contactBtn a{
+        padding: .5em .75em;
+        color: var(--text-brand-on-brand);
+        background: linear-gradient(to left, var(--background-positive-default) 50%, var(--background-warning-hover) 50%) 100%;
+        background-size: 200% 100%;
+        background-position: right bottom;
+    }
+    .contactBtn a,button{
         border-radius: var(--br-5xs);
-        background-color: var(--background-positive-default);
         font-size: var(--small-text-size);
+        transition: background-position 0.3s;
+        
+    }
+    .contactBtn a:hover,.contactBtn a:active,button:hover,button:active,button a:hover,button a:active{
+        background-position: left top;
     }
 
-    
-
+    button{
+        box-shadow: var(--button-shadow);
+        background: linear-gradient(to top,var(--background-warning-hover) 50%, var(--background-positive-default) 50%) 100%;
+        background-size: 100% 200%;
+        background-position: left bottom;
+    }
 
     button a{
         display: block;
@@ -144,14 +159,10 @@ header{
         color: var(--text-neutral-on-neutral);
         cursor: pointer;
     }
-
-
-    button:hover,button a:hover{
-        background-color: #10a411;
+    button:hover,button:active,button a:hover,button a:active{
         color: white;
         border-radius: var(--br-5xs);
     }
-    
 
     #heroMessage{
         display: grid;
@@ -195,6 +206,26 @@ main{
     #works,#profile{
         flex-direction: row-reverse;
     }
+    section div button{
+        border-radius: var(--br-5xs);
+        color: var(--text-brand-on-brand);
+        box-shadow: var(--button-shadow);
+        transition: background-position 0.3s;
+    }
+
+    section div button{
+        background: linear-gradient(to top,var(--background-warning-hover) 50%, var(--background-positive-default) 50%) 100%;
+        background-size: 100% 200%;
+        background-position: left bottom;
+        
+    }
+    section#works div button{
+        background-position-x: right;
+        background: linear-gradient(to left,var(--background-warning-hover) 50%, var(--background-positive-default) 50%) 100%;
+        background-size: 200% 100%;
+    }
+    section div button:hover{background-position: left top;}
+    section#works div button:hover{background-position-x: left}
 
 
     section{
@@ -204,13 +235,10 @@ main{
         align-items: center;
     
         div button{
-            background-color: var(--background-warning-hover);
             align-self:flex-start;
-            /* letter-spacing: 0.2rem; */
-            border-radius: var(--br-5xs);
-            color: var(--text-brand-on-brand);
-
         }
+
+
         button a{
             display: block;
             padding: var(--padding-xs) var(--padding-5xl);
@@ -218,7 +246,6 @@ main{
             font-size: var(--small-text-size);
             color: var(--text-neutral-on-neutral);
         }
-
 
         div{
             display: flex;
@@ -670,9 +697,9 @@ footer .basew{
         cursor: pointer;
         padding-right: 10px;
     }
-    .close:hover,
+    .close:hover,.close:active,
     .close:focus,
-    .close-button:hover,
+    .close-button:hover,.close-button:active,
     .close-button:focus {
         color: black;
         text-decoration: none;
@@ -709,6 +736,74 @@ footer .basew{
 }
 
 
+
+/* SNS Block */
+#sns {
+    /* padding: 1em; */
+    padding-top: var(z--space-300);
+    display: grid;
+    place-items: center;
+    /* background: #ebebf6; */
+
+    .socials-container {
+        display: flex;
+        flex-direction: row;
+        gap: var(--space-200);
+        font-size: var(--font-size-sm);
+    }
+    .socials-container a {
+        background-color: white;
+        padding: var(--space-200);
+        border-radius: 50%;
+        height: var(--spacing-m);
+        width: var(--spacing-m);
+        flex-shrink: 0;
+        display: grid;
+        place-items: center;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+    }
+    .socials-container a svg {
+        height: auto;
+        fill:var(--text-neutral-secondary);
+    }
+    .socials-container a::before {
+        content: attr(data-social);
+        position: absolute;
+        background-color: var(--acent-color);
+        color: white;
+        padding: 0.25em 0.75em;
+        border-radius: 100px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+        transform: translateY(-30px) rotate(25deg);
+        opacity: 0;
+        transition: 200ms cubic-bezier(0, 0.45, 0.99, 0.79);
+    }
+    .socials-container a:hover, .socials-container a:active {
+        background-color: var(--text-neutral-secondary);
+        svg{
+            fill: white;
+        }
+    }
+    .socials-container a::after {
+        content: "";
+        position: absolute;
+        background-color: var(--text-neutral-secondary);
+        width: 10px;
+        aspect-ratio: 1 / cos(30deg);
+        clip-path: polygon(50% 100%, 100% 0, 0 0);
+        transform: translateY(-12px) translateX(-10px) rotate(25deg);
+        opacity: 0;
+        transition: 200ms cubic-bezier(0, 0.45, 0.99, 0.79);
+    }
+    .socials-container a:hover::before, .socials-container a:active::before {
+        transform: translateY(-60px) rotate(0);
+        opacity: 1;
+    }
+    .socials-container a:hover::after,.socials-container a:active::after {
+        transform: translateY(-41px) translateX(0);
+        opacity: 1;
+    }
+}
 
 
 /* レスポンシブCSS */
@@ -781,6 +876,12 @@ footer .basew{
                 padding: unset;
             }
         }
+        body,header,.basew{
+            overflow-x: hidden;
+        }
+        header, main section{
+            margin-bottom: 100px;
+        }
 
         header{
             nav{
@@ -805,26 +906,35 @@ footer .basew{
                 row-gap: .45em;
 
                 nav ul{
-                    /* gap: var(--small-text-size); */
-                    /* justify-content: space-around; */
-                    gap:2%;
+                    gap:.5rem;
                 }
                 nav a{
                     /* text-decoration: underline; */
                     display: block;
-                    padding:.5em;
-                    backdrop-filter: sepia(90%);
+                    padding:.5em ;
+                    /* backdrop-filter: sepia(90%); */
                     font-size: small;
                     line-height: 1;
                 }
                 nav a:hover,nav a:active{
                     text-decoration: underline;
                     color: var(--text-neutral-default);
+                    opacity: .8;
                 }
-                
+
+               >nav ul{
+                    li:last-of-type{
+                        background-color: var(--background-positive-default);
+                        border-radius: var(--br-5xs);
+                        a{color: white;}
+                    }
+                } 
                 .sns ul{
                     justify-content: center;
                     gap:1em;
+                    li a{
+                        padding: 0;
+                    }
                 }
                 #footername  p{
                     border-top:1px solid var(--border-neutral-secondary);
@@ -836,6 +946,7 @@ footer .basew{
         }
 
         main{
+
 
             section,#works,#profile{
                 flex-direction: column-reverse;
@@ -855,6 +966,8 @@ footer .basew{
 
 
             section#contact{
+                margin-bottom: var(--margin-bottom);               
+
                 div p{
                     text-align: left;
                 }
@@ -864,7 +977,7 @@ footer .basew{
 
                 div:not(#form){
                     width: 99%;
-                    padding: .25em;
+                    padding: 1em .25em 1.5em;                    
                 }
                 #form{
                     width: 95%;
@@ -971,72 +1084,3 @@ footer .basew{
 
     }
 
-
-
-/* SNS Block */
-#sns {
-    /* padding: 1em; */
-    padding-top: var(z--space-300);
-    display: grid;
-    place-items: center;
-    /* background: #ebebf6; */
-
-    .socials-container {
-        display: flex;
-        flex-direction: row;
-        gap: var(--space-200);
-        font-size: var(--font-size-sm);
-    }
-    .socials-container a {
-        background-color: white;
-        padding: var(--space-200);
-        border-radius: 50%;
-        height: var(--spacing-m);
-        width: var(--spacing-m);
-        flex-shrink: 0;
-        display: grid;
-        place-items: center;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
-    }
-    .socials-container a svg {
-        height: auto;
-        fill:var(--text-neutral-secondary);
-    }
-    .socials-container a::before {
-        content: attr(data-social);
-        position: absolute;
-        background-color: var(--acent-color);
-        color: white;
-        padding: 0.25em 0.75em;
-        border-radius: 100px;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
-        transform: translateY(-30px) rotate(25deg);
-        opacity: 0;
-        transition: 200ms cubic-bezier(0, 0.45, 0.99, 0.79);
-    }
-    .socials-container a:hover {
-        background-color: var(--text-neutral-secondary);
-        svg{
-            fill: white;
-        }
-    }
-    .socials-container a::after {
-        content: "";
-        position: absolute;
-        background-color: var(--text-neutral-secondary);
-        width: 10px;
-        aspect-ratio: 1 / cos(30deg);
-        clip-path: polygon(50% 100%, 100% 0, 0 0);
-        transform: translateY(-12px) translateX(-10px) rotate(25deg);
-        opacity: 0;
-        transition: 200ms cubic-bezier(0, 0.45, 0.99, 0.79);
-    }
-    .socials-container a:hover::before {
-        transform: translateY(-60px) rotate(0);
-        opacity: 1;
-    }
-    .socials-container a:hover::after {
-        transform: translateY(-41px) translateX(0);
-        opacity: 1;
-    }
-}
