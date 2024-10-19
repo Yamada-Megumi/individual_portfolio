@@ -213,19 +213,21 @@ main{
         transition: background-position 0.3s;
     }
 
-    section div button{
+    section div button:not(#openModal){
         background: linear-gradient(to top,var(--background-warning-hover) 50%, var(--background-positive-default) 50%) 100%;
         background-size: 100% 200%;
         background-position: left bottom;
         
     }
-    section#works div button{
+    section#works div button:not(#openModal){
         background-position-x: right;
         background: linear-gradient(to left,var(--background-warning-hover) 50%, var(--background-positive-default) 50%) 100%;
         background-size: 200% 100%;
     }
-    section div button:hover{background-position: left top;}
-    section#works div button:hover{background-position-x: left}
+    section div button:not(#openModal):hover{background-position: left top;}
+    section#works div button:not(#openModal):hover{background-position-x: left}
+
+
 
 
     section{
@@ -397,11 +399,11 @@ main{
             p:last-of-type button{
                 margin: auto;
             }
-            button[disabled] {
+            button:disabled{
                 box-shadow: var(--button-shadow);
                 border-radius: var(--br-5xs);
                 background-color: var(--border-neutral-secondary);
-                cursor: not-allowed;;
+                cursor: not-allowed;
             }
         }
     }
