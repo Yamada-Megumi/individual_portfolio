@@ -216,10 +216,15 @@
 				<p>LinkedIn、LINE（お友達登録後）から、お問い合わせいただけます。</p>
 				<p>以下のお問い合わせフォームからもお問い合わせいただけます。</p>
 
-				<p>お名前、メールアドレス、内容をすべて入力してください。<br>メールを送信された場合、送信内容を入力したEmailアドレス宛にメールを送信していまます。受信の確認をお願いいたします。</p>
+				<p class="important">
+					お名前、メールアドレス、内容をすべて入力してください。<br>メールを送信された場合、送信内容を入力したEmailアドレス宛にメールを送信していまます。受信の確認をお願いいたします。</p>
+				<p>
+					<span id="ner"></span>
+					<span id="eer"></span>
+					<span id="mer"></span>
+				</p>
 
 				<div id="form">
-
 					<p><label for="name">お名前</label>
 						<input type="text" name="name" id="name" placeholder="お名前の入力" autocomplete="name">
 					</p>
@@ -361,21 +366,25 @@
 <script>
 	'use strict';
 	// エラー処理
-	let error = 0;
+	let error = "";
 	const errorMessages = {
 		name: {
-			n: "お名前の入力",
-			m: "未入力です"
+			n: "お名前",
+			m: "が未入力です"
 		},
 		email: {
-			n: "メールアドレスの入力",
-			m: "未入力またはメールアドレスが正しくありません"
+			n: "メールアドレス",
+			m: "が未入力または形式が正しくありません"
 		},
 		message: {
-			n: "問い合わせ内容の入力",
-			m: "未入力です"
+			n: "問い合わせ内容",
+			m: "が未入力です"
 		}
 	};
+	// エラーメッセージ表示用
+	const errorname = errorMessages.name.n + errorMessages.name.m;
+	const erroremail = errorMessages.email.n + errorMessages.email.m;
+	const errormessage = errorMessages.message.n + errorMessages.message.m;
 
 	//　HTMLエスケープ処理
 	const escapeHTML = (string) => {
@@ -394,9 +403,11 @@
 	// 送信ボタンをクリックしたら、チェックボックスがチェックされているか確認し、チェックされていない場合は送信できないようにする
 	const agree = document.querySelector('#agree');
 	const button = document.querySelector('#contact button');
+
 	// 初期値セット　送信ボタンを無効にする
 	button.disabled = true;
-	// モーダルウィンドウを表示
+
+	// モーダルウィンドウを表示処理用　クラス名で取得
 	const modal = document.querySelector("#mod");
 	const btn = document.querySelector("#openModal");
 	const span = document.querySelector(".close");
@@ -405,10 +416,16 @@
 	// 送信
 	const submit = document.querySelector('#submit');
 
+	// 同意するチェック後の処理
 	agree.addEventListener('change', () => {
 		if (agree.checked) {
 			button.disabled = false;
 			// console.log(agree.checked);
+
+			// メールアドレスの正規表現 | メールアドレスのチェック用
+			const mail_regex = /^[a-z]+[a-z0-9_-]+@[a-z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/i;
+			// 
+
 			button.addEventListener('click', () => {
 				event.preventDefault();
 				// 入力内容を取得
@@ -446,26 +463,47 @@
 				// 改行を<br>に変換
 				messageS.innerHTML = message.replace(/\r?\n/g, '<br>');
 
+				// エラーチェック
+				const lastP = document.querySelector('#form p:last-child');
+				const userError = document.querySelector('#ner');
+				const emailError = document.querySelector('#eer');
+				const messageError = document.querySelector('#mer');
 
 				if (!user) {
-					userElement.setAttribute("placeholder", errorMessages.name.m);
+					userElement.setAttribute("placeholder", errorname);
 					userElement.setAttribute("class", "error");
+					console.log(errorname);
+					userError.setAttribute("class", "error");
+					userError.textContent = "/ " + errorname;
 				} else {
-					userElement.removeAttribute("class", "error");
+					userElement.removeAttribute("class");
+					userElement.removeAttribute("placeholder");
+					userError.textContent = "";
 				}
 				if (!message) {
-					messageElement.setAttribute("placeholder", errorMessages.message.m);
+					messageElement.setAttribute("placeholder", errormessage);
 					messageElement.setAttribute("class", "error");
+					console.log(errormessage);
+					messageError.setAttribute("class", "error");
+					messageError.textContent = "/ " + errormessage;
+
 				} else {
-					messageElement.removeAttribute("class", "error");
+					messageElement.removeAttribute("class");
+					messageElement.removeAttribute("placeholder");
+					messageError.textContent = "";
 				}
-
-
 				if (!email || !mail_regex.test(email)) {
-					emailElement.setAttribute("placeholder", errorMessages.email.m);
+					emailElement.setAttribute("placeholder", erroremail);
 					emailElement.setAttribute("class", "error");
+					console.log(erroremail);
+					emailError.setAttribute("class", "error");
+					emailError.textContent = "/ " + erroremail;
+
+
 				} else {
-					emailElement.removeAttribute("class", "error");
+					emailElement.removeAttribute("class");
+					emailElement.removeAttribute("placeholder");
+					emailError.textContent = "";
 				}
 
 				// モーダルウィンドウを表示する
@@ -478,6 +516,7 @@
 		} else {
 			button.disabled = true;
 		}
+
 	});
 
 

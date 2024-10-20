@@ -443,7 +443,7 @@ main{
             ~ p:last-of-type{
             font-size: var(--small-text-siz);
             }
-            ~ p:last-of-type::before{
+            ~ p.important::before{
                 content: "! ";
                 font-weight: bold;
                 color: var(--text-warning-tertiary);
@@ -461,7 +461,16 @@ main{
         border-radius: var(--br-5xs);
         
         }
-    }    
+        p.important + p{
+            display: inline;
+        }
+        p.important + p span.error{
+            display: inline-block;
+            font-size: var(--font-size-sm);
+            color: var(--color-saddlebrown);
+        }
+
+    }
 }
 
 
