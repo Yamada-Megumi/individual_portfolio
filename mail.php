@@ -38,8 +38,8 @@ URL: http://www.st-yamada.com
 EOM;
 
     $headers = array(
-        'From' => $from,
-        'Reply-To' => $from,
+        'From' => $mail,
+        'Reply-To' => $mail,
         'Bcc' => $from,
         'X-Mailer' => 'PHP/' . phpversion()
     );
@@ -62,9 +62,9 @@ exit;
 
 
 
-            // 確認のための出力
-            echo "ユーザー名: " . htmlspecialchars($user) . "<br>";
-            echo "メールアドレス: " . htmlspecialchars($mail) . "<br>";
-            echo "問い合わせ内容: " . nl2br(htmlspecialchars($memo)) . "<br>";
+// 確認のための出力
+echo "ユーザー名: " . htmlspecialchars($user) . "<br>";
+echo "メールアドレス: " . htmlspecialchars($mail) . "<br>";
+echo "問い合わせ内容: " . nl2br(htmlspecialchars($memo)) . "<br>";
 
 ?>
