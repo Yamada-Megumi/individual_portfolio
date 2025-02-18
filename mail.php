@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail = isset($_POST['mail']) ? $_POST['mail'] : '';
     $memo = isset($_POST['memo']) ? $_POST['memo'] : '';
 
-    var_dump($_POST);
+    // var_dump($_POST);
 
     // データを処理する（例：メール送信）
     // ここにメール送信のコードを追加できます
@@ -44,12 +44,21 @@ EOM;
         'X-Mailer' => 'PHP/' . phpversion()
     );
 
+    if($user == "おなまえ" || $user == "お名前" || $memo == "問い合わせ内容" || $memo == "内容"){
+        $check_erro = "error01";
+    }
+    // 迷惑メール対策
+    if($check_erro === "error01"){
+        echo "送信エラー";
+    }else{
+        if(mb_send_mail($to,$subject,$message,$headers)){
+            echo "メール送信成功";
+        }else{
+            echo "メール送信失敗";
+        }
+    }
 
-if(mb_send_mail($to,$subject,$message,$headers)){
-    echo "メール送信成功";
-}else{
-    echo "メール送信失敗";
-}
+
 
 $host  = $_SERVER['HTTP_HOST'];
 $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
